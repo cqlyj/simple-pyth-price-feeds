@@ -12,8 +12,6 @@ contract PythPriceFeed {
         0xff61491a931112ddf1bd8147cd1b641375f79f5825126d665480874634fd0ace;
     uint constant AGE = 60;
 
-    // 0xDd24F84d36BF92C65F92307595335bdFab5Bbd21
-    // Sepolia
     constructor(address pythContract) {
         pyth = IPyth(pythContract);
     }
