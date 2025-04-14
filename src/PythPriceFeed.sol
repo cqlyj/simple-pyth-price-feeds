@@ -23,7 +23,7 @@ contract PythPriceFeed {
  
      * @param priceUpdate The encoded data to update the contract with the latest price
      */
-    function exampleMethod(
+    function getEThUSDPrice(
         bytes[] calldata priceUpdate
     ) public payable returns (PythStructs.Price memory) {
         // Submit a priceUpdate to the Pyth contract to update the on-chain price.
