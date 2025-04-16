@@ -16,6 +16,8 @@ contract PythPriceFeed {
         pyth = IPyth(pythContract);
     }
 
+    receive() external payable {}
+
     /**
      * Fetch the priceUpdate from Hermes and pass it to the Pyth contract to update the prices.
      * Add the priceUpdate argument to any method on your contract that needs to read the Pyth price.
