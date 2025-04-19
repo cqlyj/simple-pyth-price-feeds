@@ -1,66 +1,72 @@
-## Foundry
+# Simple Pyth Price Feed Demo
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This is a simple demo of how to use the Pyth price feed in Solidity.
 
-Foundry consists of:
+# Getting Started
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## Requirements
 
-## Documentation
+- [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+  - You'll know you did it right if you can run `git --version` and you see a response like `git version x.x.x`
+- [foundry](https://getfoundry.sh/)
+  - You'll know you did it right if you can run `forge --version` and you see a response like `forge 0.3.0 (5a8bd89 2024-12-19T17:17:10.245193696Z)`
 
-https://book.getfoundry.sh/
+## Quickstart
 
-## Usage
-
-### Build
-
-```shell
-$ forge build
+```
+git clone https://github.com/cqlyj/simple-pyth-price-feeds
+cd simple-pyth-price-feeds
+make
 ```
 
-### Test
+# Usage
 
-```shell
-$ forge test
+1. Set up your environment variables and fill in the `.env` file with your own values.
+
+```bash
+cp .env.example .env
 ```
 
-### Format
+2. Deploy the `PythPriceFeed` contract:
 
-```shell
-$ forge fmt
+```bash
+make deploy
 ```
 
-### Gas Snapshots
+3. Send a few eth to the contract by grabbing the address from the `deploy` output and sending some from your wallet.
 
-```shell
-$ forge snapshot
+4. Get the `priceUpdate` data:
+
+```bash
+make get-price-update
 ```
 
-### Anvil
+5. Then copy the data field from the `price_update.json` file and paste it into the script `GetETHUSDPrice.s.sol`:
 
-```shell
-$ anvil
+```bash
+  priceUpdate[
+            0
+        ] = "0x..."; // paste the data here, note that the data should start with 0x
 ```
 
-### Deploy
+6. Run the script to get the price:
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+```bash
+make get-eth-usd-price
 ```
 
-### Cast
+## NOTE
 
-```shell
-$ cast <subcommand>
+If you failed to run the script and get custom error `0x6ce2251a`, then just go to the explorer and send transaction there. You can find more information here: [Custom error 0x6ce2251a](https://dev-forum.pyth.network/t/custom-error-0x6ce2251a/54/1).
+
+# Test
+
+You can run the tests with the following command:
+
+```bash
+forge test -vvvv
 ```
 
-### Help
+## Contact
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+Luo Yingjie - [luoyingjie0721@gmail.com](luoyingjie0721@gmail.com)
